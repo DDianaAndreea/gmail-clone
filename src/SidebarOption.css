@@ -19,6 +19,7 @@
 .sidebar_option >p{
     display: none;
     font-weight: 300;
+    padding-right: 5px;
 }
 
 .sidebar_option:hover,
