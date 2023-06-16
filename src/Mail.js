@@ -62,7 +62,18 @@ export default function Mail() {
           </IconButton>
         </div>
       </div>
-
+      <div className='mail_body'>
+        <div className='mail_body_header'>
+          <h2>Subject</h2>
+          <LabelImportantIcon className='mail_important' />
+          <p>title</p>
+          <p className='mail_time'>10pm</p>
+        </div>
+        <div className='mail_message'>
+          <p>This is the mail_message</p>
+          
+        </div>
+      </div>
 
     </div>
   )
