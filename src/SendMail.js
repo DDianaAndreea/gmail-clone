@@ -5,14 +5,28 @@ import CloseIcon from '@mui/icons-material/Close';
 import{ useForm} from 'react-hook-form'
 import { useDispatch } from 'react-redux';
 import { closeSendMessage } from './features/mailSlice';
+import { db } from './firebase';
+import { collection, serverTimestamp, addDoc } from "@firebase/firestore";
+
 
 export default function SendMail() {
   const {register, handleSubmit, watch, formState: { errors } } = useForm();
   const dispatch = useDispatch();
 
-  const onSubmit = (formData) =>{
-    console.log(formData)
+  const onSubmit = async (formData) =>{
+    console.log(formData);
+    const docRef = await addDoc(collection(db, "emails"), {
+    
+            to:formData.to,
+            subject:formData.subject,
+            message: formData.message,
+            timestamp: serverTimestamp()
+    });
+    dispatch(closeSendMessage());
+    console.log("Email sended with id:", docRef.id);
+    window.location.reload(true);
   }
+ 
   return (
     <div className='sendMail'>
         <div className='sendMail_header'>
